@@ -13,7 +13,7 @@ import {
 import { Ionicons } from "@expo/vector-icons";
 import Contants from "expo-constants";
 import * as Permissions from "expo-permissions";
-import firebase from "firebase";
+// import firebase from "firebase";
 import Fire from "../Fire";
 import * as ImagePicker from "expo-image-picker";
 import { MaterialIcons } from "@expo/vector-icons";
