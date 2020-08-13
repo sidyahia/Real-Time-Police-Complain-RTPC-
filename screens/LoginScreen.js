@@ -5,11 +5,17 @@ import {
   StyleSheet,
   TextInput,
   TouchableOpacity,
+  Image,
+  StatusBar,
+  LayoutAnimation,
 } from "react-native";
 
 import * as firebase from "firebase";
 
 export default class LoginScreen extends React.Component {
+  static navigationOptions = {
+    headerShown: false,
+  };
   state = {
     email: "",
     password: "",
@@ -28,6 +34,7 @@ export default class LoginScreen extends React.Component {
   render() {
     return (
       <View style={styles.container}>
+        <StatusBar barStyle="light-content"></StatusBar>
         <Text style={styles.greeting}>{"Welcome To RTPC"}</Text>
 
         <View style={styles.errorMessage}>
@@ -84,7 +91,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   greeting: {
-    marginTop: 32,
+    marginTop: 70,
     fontSize: 18,
     fontWeight: "400",
     textAlign: "center",

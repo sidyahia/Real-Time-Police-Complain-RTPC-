@@ -5,11 +5,18 @@ import {
   StyleSheet,
   TextInput,
   TouchableOpacity,
+  Image,
+  StatusBar,
+  LayoutAnimation,
 } from "react-native";
 
+import { Ionicons } from "@expo/vector-icons";
 import * as firebase from "firebase";
 
 export default class RegisterScreen extends React.Component {
+  static navigationOptions = {
+    headerShown: false,
+  };
   state = {
     name: "",
     email: "",
@@ -32,6 +39,18 @@ export default class RegisterScreen extends React.Component {
   render() {
     return (
       <View style={styles.container}>
+        <StatusBar barStyle="light-content"></StatusBar>
+        <TouchableOpacity
+          style={styles.back}
+          onPress={() => this.props.navigation.goBack()}
+        >
+          <Ionicons
+            name="ios-arrow-round-back"
+            size={32}
+            color="#FFF"
+          ></Ionicons>
+        </TouchableOpacity>
+
         <Text style={styles.greeting}>{"Sign up to get started."}</Text>
 
         <View style={styles.errorMessage}>
@@ -80,8 +99,11 @@ export default class RegisterScreen extends React.Component {
           onPress={() => this.props.navigation.navigate("Login")}
         >
           <Text style={{ color: "#414959", fontSize: 13 }}>
-            New to RTPC?
-            <Text style={{ color: "#E9446A", fontWeight: "500" }}> login</Text>
+            Already have account?
+            <Text style={{ color: "#E9446A", fontWeight: "500" }}>
+              {" "}
+              Sign in
+            </Text>
           </Text>
         </TouchableOpacity>
       </View>
@@ -94,7 +116,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   greeting: {
-    marginTop: 32,
+    marginTop: 70,
     fontSize: 18,
     fontWeight: "400",
     textAlign: "center",
@@ -132,6 +154,17 @@ const styles = StyleSheet.create({
     backgroundColor: "#E9446A",
     borderRadius: 4,
     height: 52,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  back: {
+    position: "absolute",
+    top: 48,
+    left: 32,
+    width: 32,
+    height: 32,
+    borderRadius: 16,
+    backgroundColor: "rgba(21,22,48,0.1)",
     alignItems: "center",
     justifyContent: "center",
   },
