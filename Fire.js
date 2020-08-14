@@ -7,10 +7,25 @@ class Fire {
   //   }
   //   //firebase.initializeApp(firebaseConfig);
   // }
-
+  state = {
+    //profileImageUrl: null,
+  };
   addPost = async ({ text, localUri, location }) => {
     const remoteUri = await this.uploadPhotoAsync(localUri);
+    // let val = "";
+
     //alert(remoteUri);
+    //const ref = await firebase.storage().ref(remoteUri);
+
+    //****Error */
+
+    // const url = await firebase
+    //   .storage()
+    //   .ref("/" + remoteUri)
+    //   .getDownloadURL();
+
+    //**Error */
+    //const url = await ref.getDownloadURL();
     return new Promise((res, rej) => {
       this.firestore
         .collection("posts")
@@ -39,8 +54,19 @@ class Fire {
       const file = await response.blob();
 
       let upload = firebase.storage().ref(path).put(file);
+      //res(path);
       //alert(path);
-      res(path);
+      //const url = await upload.snapshot.ref.getDownloadURL();
+
+      //alert(url);
+      // let imageRef = await firebase.storage().ref("/" + remoteUri);
+      // imageRef
+      //   .getDownloadURL()
+      //   .then((url) => {
+      //     res(url);
+      //   })
+      //   .catch((e) => console.log("getting downloadURL of image error => ", e));
+
       // upload.on(
       //   "state_change",
       //   (snapshot) => {},
@@ -48,8 +74,9 @@ class Fire {
       //     rej(err);
       //   },
       //   async () => {
-      //     const url = await upload.snapshot.ref.getDownloadURL();
-      //     res(url);
+
+      //const url = await upload.snapshot.ref.getDownloadURL();
+      res(path);
       //   }
       // );
     });

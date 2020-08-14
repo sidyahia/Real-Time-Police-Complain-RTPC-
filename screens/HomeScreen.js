@@ -126,7 +126,7 @@ export default class HomeScreen extends React.Component {
           alert("Your Complain Has Been Submited Successfully!");
         })
         .catch((error) => {
-          alert(error);
+          alert(error.message);
         });
     }
   };
@@ -142,9 +142,7 @@ export default class HomeScreen extends React.Component {
       // </View>
       <View style={styles.container}>
         <StatusBar barStyle="light-content"></StatusBar>
-        <Text style={styles.greeting}>
-          Write Your Complain {this.state.email}
-        </Text>
+        <Text style={styles.greeting}>Write Your Complain</Text>
 
         <View style={styles.errorMessage}>
           {this.state.errorMessage && (

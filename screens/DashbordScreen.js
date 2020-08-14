@@ -13,124 +13,46 @@ import {
 import { Ionicons } from "@expo/vector-icons";
 import Contants from "expo-constants";
 import * as Permissions from "expo-permissions";
-// import firebase from "firebase";
-import Fire from "../Fire";
-import * as ImagePicker from "expo-image-picker";
-import { MaterialIcons } from "@expo/vector-icons";
-import * as Location from "expo-location";
+import firebase from "firebase";
+// import Fire from "../Fire";
+// import * as ImagePicker from "expo-image-picker";
+// import { MaterialIcons } from "@expo/vector-icons";
+// import * as Location from "expo-location";
 
-const firebase = require("firebase");
+// const firebase = require("firebase");
 require("firebase/firestore");
 export default class DashbordScreen extends React.Component {
   static navigationOptions = {
     headerShown: false,
   };
   state = {
-    email: "",
-    displayName: "",
-    errorMessage: null,
-    text: "",
-    location: null,
-    image: null,
+    complain: [],
   };
 
-  componentDidMount() {
-    this.getPhotoPermission();
-    this.getLocationPermission();
-    // const { email, displayName } = firebase.auth().currentUser;
-
-    // this.setState({ email, displayName });
+  constructor(props) {
+    super(props);
+    this.subsciber = firebase
+      .firestore()
+      .collection("posts")
+      .onSnapshot((docs) => {
+        let complain = [];
+        docs.forEach((doc) => {
+          complain.push(doc.data());
+        });
+        this.setState({ complain });
+      });
   }
 
-  getPhotoPermission = async () => {
-    if (Contants.platform.ios) {
-      const { state } = await Permissions.askAsync(Permissions.CAMERA_ROLL);
+  // getUrl = () => {
 
-      if (status != "granted") {
-        alert("We need permission to access your camera roll");
-      }
-    } else if (Contants.platform.android) {
-      const { state } = await Permissions.askAsync(Permissions.CAMERA_ROLL);
-
-      if (status != "granted") {
-        alert("We need permission to access your camera roll");
-      }
-    }
-  };
-
-  getLocationPermission = async () => {
-    if (Contants.platform.ios) {
-      const { state } = await Permissions.askAsync(Permissions.LOCATION);
-
-      if (status != "granted") {
-        alert("We need permission to access your location");
-      }
-    } else if (Contants.platform.android) {
-      const { state } = await Permissions.askAsync(Permissions.LOCATION);
-
-      if (status != "granted") {
-        alert("We need permission to access your location");
-      }
-    }
-  };
-
-  pickImage = async () => {
-    let result = await ImagePicker.launchImageLibraryAsync({
-      mediaTypes: ImagePicker.MediaTypeOptions.Images,
-      allowsEditing: true,
-      aspect: [1, 1],
-    });
-
-    if (!result.cancelled) {
-      this.setState({ image: result.uri });
-    }
-  };
+  // }
 
   signOutUser = () => {
     firebase.auth().signOut();
   };
 
-  getLocation = async () => {
-    let result = await Location.getCurrentPositionAsync({});
-
-    if (!result.cancelled) {
-      this.setState({ location: JSON.stringify(result) });
-    }
-  };
-
-  handelPost = () => {
-    if (
-      this.state.text == " " ||
-      this.state.image == null ||
-      this.state.location == null
-    ) {
-      alert("Please Fill All Information First");
-    } else {
-      Fire.shared
-        .addPost({
-          text: this.state.text.trim(),
-          localUri: this.state.image,
-          location: this.state.location,
-        })
-        .then((ref) => {
-          this.setState({ text: "", image: null, location: null });
-          alert("Your Complain Has Been Submited Successfully!");
-        })
-        .catch((error) => {
-          alert(error);
-        });
-    }
-  };
-
   render() {
     return (
-      // <View style={styles.container}>
-      //   <Text>Hi {this.state.email}</Text>
-
-      //   <TouchableOpacity style={{ marginTop: 32 }} onPress={this.signOutUser}>
-      //     <Text>Logout</Text>
-      //   </TouchableOpacity>
-      // </View>
       <View style={styles.container}>
         <StatusBar barStyle="light-content"></StatusBar>
         <Text style={styles.greeting}>{"Dashbord"}</Text>
@@ -141,54 +63,20 @@ export default class DashbordScreen extends React.Component {
           )}
         </View>
 
-        <View style={styles.form}>
-          <View>
-            {/* <Text style={styles.inputTitle}>Complain</Text> */}
-            <TextInput
-              style={styles.input}
-              autoFocus={true}
-              numberOfLines={4}
-              placeholder="Write your complain"
-              multiline={true}
-              onChangeText={(text) => this.setState({ text })}
-              value={this.state.text}
-            ></TextInput>
-          </View>
-          {/* <View style={{ marginTop: 32 }}>
-            <TouchableOpacity onPress={this.getLocation}>
-              <Text style={{ color: "#E9446A", fontWeight: "500", height: 40 }}>
-                Get Location
-              </Text>
-            </TouchableOpacity>
-
-            <TextInput
-              style={styles.input}
-              secureTextEntry
-              autoCapitalize="none"
-              onChangeText={(password) => this.setState({ password })}
-              value={this.state.password}
-            ></TextInput>
-          </View> */}
-
-          <TouchableOpacity style={styles.photo} onPress={this.pickImage}>
-            <Ionicons name="md-camera" size={32} color="#D8D9DB"></Ionicons>
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.location} onPress={this.getLocation}>
-            <MaterialIcons name="location-on" size={32} color="#D8D9DB" />
-            {/* <Ionicons name="md-camera" size={32} color="#D8D9DB"></Ionicons> */}
-          </TouchableOpacity>
-          <Text>{this.state.location}</Text>
-          <View style={{ marginHorizontal: 32, marginTop: 32, height: 150 }}>
-            <Image
-              source={{ uri: this.state.image }}
-              style={{ width: "100%", height: "100%" }}
-            ></Image>
-          </View>
+        <View>
+          {this.state.complain.map((com, index) => (
+            <View style={{ marginTop: 32 }} key={index}>
+              <Text>{com.uid}</Text>
+              <Text>{com.text}</Text>
+              <Text>{com.location}</Text>
+              <Text>{com.image}</Text>
+              {/* <Image
+                source={{ uri: com.image }}
+                style={{ width: "100%", height: "100%" }}
+              ></Image> */}
+            </View>
+          ))}
         </View>
-
-        <TouchableOpacity style={styles.button} onPress={this.handelPost}>
-          <Text style={{ color: "#FFF", fontWeight: "500" }}>Submit</Text>
-        </TouchableOpacity>
 
         <TouchableOpacity
           style={{ alignSelf: "center", marginTop: 32 }}
@@ -199,6 +87,10 @@ export default class DashbordScreen extends React.Component {
       </View>
     );
   }
+
+  // get firestore() {
+  //   return firebase.firestore();
+  // }
 }
 
 const styles = StyleSheet.create({
