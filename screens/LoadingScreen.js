@@ -6,6 +6,20 @@ import Fire from "../Fire";
 export default class LoadingScreen extends React.Component {
   componentDidMount() {
     firebase.auth().onAuthStateChanged((user) => {
+      // if (user != null) {
+      //   if (user.email != null && user.email == "admin@police.com") {
+      //     this.props.navigation.navigate("Dash");
+      //   } else {
+      //     this.props.navigation.navigate(user ? "App" : "Auth");
+      //   }
+      // } else {
+      //   this.props.navigation.navigate(user ? "App" : "Auth");
+      // }
+      // this.props.navigation.navigate(
+      //   user ? (user.email  != null ? "admin@police.com" ? "Dash" : "App") : "Auth"
+      // this.props.navigation.navigate(
+      //   user ? (user.email ? "App" : "Auth") : "Auth"
+      // );
       this.props.navigation.navigate(user ? "App" : "Auth");
     });
   }

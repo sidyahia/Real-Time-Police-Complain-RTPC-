@@ -21,7 +21,7 @@ import * as Location from "expo-location";
 
 const firebase = require("firebase");
 require("firebase/firestore");
-export default class HomeScreen extends React.Component {
+export default class DashbordScreen extends React.Component {
   static navigationOptions = {
     headerShown: false,
   };
@@ -35,22 +35,13 @@ export default class HomeScreen extends React.Component {
   };
 
   componentDidMount() {
-    //const { email, displayName } = firebase.auth().currentUser;
-    let Uemail = (firebase.auth().currentUser || {}).email;
-    //this.setState({ email: Uemail });
-    //alert(Uemail);
-    if (Uemail == "admin@police.com") {
-      this.props.navigation.navigate("Dash");
-    }
-    //this.getDashbord();
     this.getPhotoPermission();
     this.getLocationPermission();
+    // const { email, displayName } = firebase.auth().currentUser;
+
+    // this.setState({ email, displayName });
   }
-  getDashbord = () => {
-    // if (this.state.email == "admin@police.com") {
-    alert(this.state.email);
-    // }
-  };
+
   getPhotoPermission = async () => {
     if (Contants.platform.ios) {
       const { state } = await Permissions.askAsync(Permissions.CAMERA_ROLL);
@@ -142,9 +133,7 @@ export default class HomeScreen extends React.Component {
       // </View>
       <View style={styles.container}>
         <StatusBar barStyle="light-content"></StatusBar>
-        <Text style={styles.greeting}>
-          Write Your Complain {this.state.email}
-        </Text>
+        <Text style={styles.greeting}>{"Dashbord"}</Text>
 
         <View style={styles.errorMessage}>
           {this.state.errorMessage && (

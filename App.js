@@ -4,6 +4,7 @@ import LoadingScreen from "./screens/LoadingScreen";
 import LoginScreen from "./screens/LoginScreen";
 import RegisterScreen from "./screens/RegisterScreen";
 import HomeScreen from "./screens/HomeScreen";
+import DashbordScreen from "./screens/DashbordScreen";
 
 import * as firebase from "firebase";
 
@@ -23,6 +24,10 @@ const AppStack = createStackNavigator({
   Home: HomeScreen,
 });
 
+const DashStack = createStackNavigator({
+  Dashbord: DashbordScreen,
+});
+
 const AuthStack = createStackNavigator({
   Login: LoginScreen,
   Register: RegisterScreen,
@@ -34,6 +39,7 @@ export default createAppContainer(
       Loading: LoadingScreen,
       App: AppStack,
       Auth: AuthStack,
+      Dash: DashStack,
     },
     {
       initialRouteName: "Loading",
