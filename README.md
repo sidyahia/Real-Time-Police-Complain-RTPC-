@@ -29,7 +29,7 @@ Adapting the new normal by doing remote complain
 <br>
 <b>API:</b> Camera API,Location API,permission API. Camera API pick the image from the gallery of a complainer which will be saved directly to police data base once submitted. Location API will determine the location of the complainer to determine the exact location from where complain is submitted. This will make the police job much easier. The app accesses users location and gallery which which requires user permission. This API is used to get the permission
 <br><br>
-<b>Components:</b>> Various presentational components is used View, Text, Stylesheet Touchable opacity, Status bar. Text input is used for taking the written complain. A function is used to get the exact time from the user.
+<b>Components:</b> Various presentational components is used View, Text, Stylesheet Touchable opacity, Status bar. Text input is used for taking the written complain. A function is used to get the exact time from the user.
 <br><br>
 <b>Security:</b> This app will authenticate both the user and police. New user needs to sign up first before making any complain. It’s highly suggested that when a user installs this app should do the sign up since in case of emergency there will be hardly any time for signing up. Successful register users will be enlisted. Police will be able to access the dashboard by using authentic police email. For dashboard no unauthorized sign up is allowed. Only police can access it. It puts high security against hacker or any unauthorized person trying to access the dashboard
 <br><br>
