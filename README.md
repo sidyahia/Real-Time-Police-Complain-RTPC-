@@ -38,7 +38,8 @@ Adapting the new normal by doing remote complain
 <b>Error Checking:</b> Errors are inevitable. Fail to handle the errors well and user frustration is ready. In RTPC app error checking is an important part of the app. TO reduce error in RTPC  A user will not be able to submit the complain without filling all the parts which are written complain image and location. An alert message will pop up and request the user to enter all the required parts. Also while log in wrong format of email or password also will be checked. An error message containing where to correct will be displayed
 <br><br>
 <b>Screen Navigation:</b><br><br>
-![116130361_2699815813620669_7110530180747958789_n](https://user-images.githubusercontent.com/67378764/88481592-2e6dd400-cf7e-11ea-92ed-6fa2ef66f374.jpg)
+![117580074_310224100320745_5512120092180161407_n](https://user-images.githubusercontent.com/67378764/90308208-72118900-deff-11ea-8b2a-e260bdb3929d.jpg)
+
 
 <br><br>
 <b>Swquence Diagram:</b><br><br>
