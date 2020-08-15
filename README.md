@@ -16,27 +16,26 @@ Crimes are committed everywhere every day. People’s assets are hijacked, damag
 <br><br>
 <b>Objectives:</b><br>
 Better communication in crime management
-Real time data sending
-Victims will be able to reach police immediately along with the evidence 
+Adapting the new normal by doing remote complain  
 <br><br>
 <b>Features:</b><br><br>
-<b>Written Complain:</b> Sometimes it takes to go to police station to complain in written form. Corona virus made the situation harder. RTPC app will make the job easier. A person no longer needs to go to police station. He/she can written complain right from the home while being safe and maintaining social distance
+<b>Written Complain:</b> Now police complain can be made from right your home or your comfort zone. Corona virus made the situation harder fro people to go to police station. RTPC app  makes the job easier. A person no longer needs to go to police station. He/she can do a written complain right from the home while being safe and maintaining social distance
 <br><br>
-<b>Police Eye:</b> Every day we are seeing crimes Infront of our eyes. With human eyes we might not be able to capture the criminal incident moment. RTPC is introducing “Police eye” feature which will make your camera a police eye.A victim or a person will be able to capture an image and send it right then to police database. This will help the police to visualize crime scene and take initiative according to that
+<b>show the evidence:</b> Every day we are seeing crimes Infront of our eyes.Somtimes we ignore to report small crimes because of goign to the police station and showing the evidance.We think it's a long procedure. RTPC is introducing “Show the evidance” feature by which you will be able to submite images regarding the crime to the police. Through the RTPC app now you can submit your evidance along with written complain
 <br><br>
-<b>Record it:</b> Sometimes still picture is not sufficient to claim or complain. You might be walking in a road and suddenly see some spoil boys beating an innocent boy. Go to our app shot the video and send it to the police. This “record it” feature will enhance the visualization of the crime scene for the police.
-<br><br>
-<b>Live location:</b> A victim might not be able to mention the place of a crime incident but RTPC will do it for the victim. Location will be seen when a complain is submitted to the police. 
+<b>Live location:</b> Just with a single tap exact location will be saved automatically. No need to enter the location manually
 <br><br>
 <b>Functionality:</b><br>
 <br>
-<b>API:</b> I will be using camera API, Video API, Location API. Camera API will take the image from the person which will be saved directly to police data base. Video API also works exact in that way. Location API will determine the location of the complainer to determine the exact location from where complain is submitted. This will make the police job much easier
+<b>API:</b> Camera API,Location API,permission API. Camera API pick the image from the gallery of a complainer which will be saved directly to police data base once submitted. Location API will determine the location of the complainer to determine the exact location from where complain is submitted. This will make the police job much easier. The app accesses users location and gallery which which requires user permission. This API is used to get the permission
 <br><br>
-<b>Components:</b> I will be using states, props and function components. For the styling various presentation components will be used including UI toolkit native base
+<b>Components:</b>> Various presentational components is used View, Text, Stylesheet Touchable opacity, Status bar. Text input is used for taking the written complain. A function is used to get the exact time from the user.
 <br><br>
-<b>Security:</b> This app will authenticate both the user and police. New user needs to sign up first before making any complain. It’s highly suggested that when a user install this app should do the sign up since in case of emergency there will be hardly any time for signing up. Successful register users will be enlisted.
+<b>Security:</b> This app will authenticate both the user and police. New user needs to sign up first before making any complain. It’s highly suggested that when a user installs this app should do the sign up since in case of emergency there will be hardly any time for signing up. Successful register users will be enlisted. Police will be able to access the dashboard by using authentic police email. For dashboard no unauthorized sign up is allowed. Only police can access it. It puts high security against hacker or any unauthorized person trying to access the dashboard
 <br><br>
-<b>Firebase data storage:</b> Police persons and complainer list will be stored here. All the data including image, video, text will be stored and fetched when needed from the storage. This is a secure and an efficient way of storing various types of data.
+<b>Firebase data storage:</b> Written Complains will be stored in firebase database. Images uploaded by complainers will be stored in firebase storage. This is a secure and an efficient way of storing various types of data. When police request to access the data, data will be retrieved from data base and images from storage. Police will be able to see the written complain and images. Also the location from where the complain is made
+<br><br>
+<b>Error Checking:</b> Errors are inevitable. Fail to handle the errors well and user frustration is ready. In RTPC app error checking is an important part of the app. TO reduce error in RTPC  A user will not be able to submit the complain without filling all the parts which are written complain image and location. An alert message will pop up and request the user to enter all the required parts. Also while log in wrong format of email or password also will be checked. An error message containing where to correct will be displayed
 <br><br>
 <b>Screen Navigation:</b><br><br>
 ![116130361_2699815813620669_7110530180747958789_n](https://user-images.githubusercontent.com/67378764/88481592-2e6dd400-cf7e-11ea-92ed-6fa2ef66f374.jpg)
